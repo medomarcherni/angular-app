@@ -1,0 +1,41 @@
+// header.component.scss
+.header-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0 24px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+    .header-content {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .app-title {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 1.2rem;
+  
+      mat-icon {
+        margin-right: 8px;
+      }
+    }
+  
+    .nav-links {
+      display: flex;
+      gap: 8px;
+  
+      .active-link {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+      }
+    }
+  
+    .language-switcher {
+      margin-left: 16px;
+    }
+  }

@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>
+    {{ (isEdit ? 'scopes.edit_title' : 'scopes.create_title') | translate }}
+</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="scopeForm" class="scope-form">
+        <!-- Rank Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'scopes.rank' | translate }}</mat-label>
+            <input matInput formControlName="rank" required (keydown)="onKeyDown($event)" (paste)="onPaste($event)">
+
+            @if (scopeForm.get('rank')?.hasError('required')) {
+            <mat-error>{{ 'scopes.validation.rank_required' | translate }}</mat-error>
+            }
+            @if (scopeForm.get('rank')?.hasError('min') || scopeForm.get('rank')?.hasError('max')) {
+            <mat-error>{{ 'scopes.validation.rank_range' | translate:{max: maxRank} }}</mat-error>
+            }
+        </mat-form-field>
+
+        <!-- Name Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'scopes.name' | translate }}</mat-label>
+            <input matInput formControlName="name" required>
+
+            @if (scopeForm.get('name')?.hasError('required')) {
+            <mat-error>{{ 'scopes.validation.name_required' | translate }}</mat-error>
+            }
+        </mat-form-field>
+
+        <!-- Description Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'scopes.description' | translate }}</mat-label>
+            <textarea matInput formControlName="description" required rows="3"></textarea>
+
+            @if (scopeForm.get('description')?.hasError('required')) {
+            <mat-error>{{ 'scopes.validation.description_required' | translate }}</mat-error>
+            }
+        </mat-form-field>
+
+        <!-- Comment Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'scopes.comment' | translate }}</mat-label>
+            <textarea matInput formControlName="comment" rows="2"></textarea>
+        </mat-form-field>
+
+        <!-- Condition Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'scopes.condition' | translate }}</mat-label>
+            <textarea matInput formControlName="condition" rows="2"></textarea>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-button (click)="onCancel()">
+        {{ 'common.cancel' | translate }}
+    </button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="scopeForm.invalid">
+        {{ 'common.save' | translate }}
+    </button>
+</div>

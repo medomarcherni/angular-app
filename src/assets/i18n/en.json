@@ -1,0 +1,17 @@
+
+{
+    "app": {
+      "title": "Business Analysts Portal"
+    },
+    "menu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "scopes": "Scopes",
+      "partners": "Partners"
+    },
+    "language": {
+      "english": "English",
+      "french": "French"
+    }
+}
+  

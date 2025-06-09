@@ -1,0 +1,15 @@
+{
+    "app": {
+        "title": "Portail des Analystes Métier"
+    },
+    "menu": {
+        "profile": "Profil",
+        "settings": "Paramètres",
+        "scopes": "Portées",
+        "partners": "Partenaires"
+    },
+    "language": {
+        "english": "Anglais",
+        "french": "Français"
+    }
+}

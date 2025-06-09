@@ -1,0 +1,85 @@
+<h1 mat-dialog-title>
+    {{ (isEdit ? 'partners.edit_title' : 'partners.create_title') | translate }}
+</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="partnerForm" class="partner-form">
+        <div class="form-row">
+            <!-- Status Field -->
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'partners.status' | translate }}</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="ACTIVE">{{ 'partners.statuses.ACTIVE' | translate }}</mat-option>
+                    <mat-option value="INACTIVE">{{ 'partners.statuses.INACTIVE' | translate }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Queue Name Field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'partners.queueName' | translate }}</mat-label>
+                <input type="text" matInput formControlName="queueName" required [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of filteredQueueNames | async; track option) {
+                    <mat-option [value]="option">{{option}}</mat-option>
+                    }
+                </mat-autocomplete>
+                @if (partnerForm.get('queueName')?.hasError('required')) {
+                <mat-error>{{ 'partners.validation.queueName_required' | translate }}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <!-- Hosting Type Field -->
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'partners.hostingType' | translate }}</mat-label>
+                <mat-select formControlName="hostingType" required>
+                    @for (type of availableHostingTypes; track type) {
+                    <mat-option [value]="type">{{ 'partners.hostingTypes.' + type | translate }}</mat-option>
+                    }
+                </mat-select>
+                @if (partnerForm.get('hostingType')?.hasError('required')) {
+                <mat-error>{{ 'partners.validation.hostingType_required' | translate }}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Alias Field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'partners.alias' | translate }}</mat-label>
+                <input matInput formControlName="alias" required>
+                @if (partnerForm.get('alias')?.hasError('required')) {
+                <mat-error>{{ 'partners.validation.alias_required' | translate }}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <!-- Application Field (Conditional) -->
+        @if (['PRINTER', 'S3'].includes(partnerForm.get('hostingType')?.value)) {
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'partners.application' | translate }}</mat-label>
+            <input matInput formControlName="application" required>
+            @if (partnerForm.get('application')?.hasError('required')) {
+            <mat-error>{{ 'partners.validation.application_required' | translate }}</mat-error>
+            }
+        </mat-form-field>
+        }
+
+        <!-- Description Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'partners.description' | translate }}</mat-label>
+            <textarea matInput formControlName="description" required rows="3"></textarea>
+            @if (partnerForm.get('description')?.hasError('required')) {
+            <mat-error>{{ 'partners.validation.description_required' | translate }}</mat-error>
+            }
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-button (click)="onCancel()">
+        {{ 'common.cancel' | translate }}
+    </button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="partnerForm.invalid">
+        {{ 'common.save' | translate }}
+    </button>
+</div>
