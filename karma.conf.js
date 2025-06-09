@@ -13,17 +13,16 @@ module.exports = function (config) {
     ],
     client: {
       jasmine: {
-        // you can add configuration options for Jasmine here
       },
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false
     },
     coverageReporter: {
       dir: path.join(__dirname, './coverage'),
       subdir: '.',
       reporters: [
-        { type: 'html' },         // Detailed HTML report
-        { type: 'text-summary' }, // Summary in CLI
-        { type: 'lcovonly' }      // Optional: used in CI tools like SonarQube
+        { type: 'html' },
+        { type: 'text-summary' },
+        { type: 'lcovonly' }
       ],
       check: {
         global: {
@@ -39,7 +38,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless'], // Or use 'Chrome' for debugging in UI
+    browsers: ['ChromeHeadless'],
     singleRun: false,
     restartOnFileChange: true
   });
