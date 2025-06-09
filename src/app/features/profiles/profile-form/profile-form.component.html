@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>
+    {{ (isEdit ? 'profile.edit_title' : 'profile.create_title') | translate }}
+</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="profileForm" class="profile-form">
+        <!-- Code Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'profile.code' | translate }}</mat-label>
+            <input matInput formControlName="code" required>
+
+            @if (profileForm.get('code')?.hasError('required')) {
+            <mat-error>{{ 'profile.validation.code_required' | translate }}</mat-error>
+            }
+            @if (profileForm.get('code')?.hasError('minlength') || profileForm.get('code')?.hasError('maxlength')) {
+            <mat-error>{{ 'profile.validation.code_length' | translate }}</mat-error>
+            }
+            @if (profileForm.get('code')?.hasError('pattern')) {
+            <mat-error>
+                @if (profileForm.get('code')?.errors?.['pattern'].requiredPattern === '^(?![0-9]+$)') {
+                {{ 'profile.validation.code_numbers' | translate }}
+                } @else {
+                {{ 'profile.validation.code_pattern' | translate }}
+                }
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <!-- Description Field -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'profile.description' | translate }}</mat-label>
+            <textarea matInput formControlName="description" required rows="3"></textarea>
+
+            @if (profileForm.get('description')?.hasError('required')) {
+            <mat-error>{{ 'profile.validation.description_required' | translate }}</mat-error>
+            }
+            @if (profileForm.get('description')?.hasError('minlength') ||
+            profileForm.get('description')?.hasError('maxlength')) {
+            <mat-error>{{ 'profile.validation.description_length' | translate }}</mat-error>
+            }
+        </mat-form-field>
+
+        <!-- Scopes Multi-select -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'profile.scopes' | translate }}</mat-label>
+            <mat-select formControlName="scopes" multiple required>
+                @for (scope of scopes(); track scope.id) {
+                <mat-option [value]="scope.name">
+                    {{ scope.name }} ({{ scope.rank }})
+                </mat-option>
+                }
+            </mat-select>
+            @if (profileForm.get('scopes')?.hasError('required')) {
+            <mat-error>{{ 'profile.validation.scopes_required' | translate }}</mat-error>
+            }
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-button (click)="onCancel()">
+        {{ 'common.cancel' | translate }}
+    </button>
+    <button id="submit" mat-raised-button color="primary" (click)="onSubmit()" [disabled]="profileForm.invalid">
+        {{ 'common.save' | translate }}
+    </button>
+</div>
