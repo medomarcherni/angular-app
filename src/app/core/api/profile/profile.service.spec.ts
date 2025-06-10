@@ -42,8 +42,6 @@ describe('ProfileService', () => {
 
   it('should call showError on getProfiles error', fakeAsync(() => {
     spyOn(of([]).pipe(delay(500)), 'subscribe').and.throwError('forced');
-    // spyOn(service, 'getProfiles').and.callThrough()
-    // Force error manually
     service.getProfiles = function () {
       this.loading.set(true);
       return of(null).pipe(delay(500)).subscribe({
@@ -100,7 +98,7 @@ describe('ProfileService', () => {
     service.updateProfile('non-existent-id', { description: 'Nothing' });
 
     const after = service.profiles();
-    expect(after).toEqual(before); // unchanged
-    expect(notificationSpy.showSuccess).toHaveBeenCalledWith('profile.updated'); // still called
+    expect(after).toEqual(before);
+    expect(notificationSpy.showSuccess).toHaveBeenCalledWith('profile.updated');
   });
 });

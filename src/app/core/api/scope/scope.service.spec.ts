@@ -77,8 +77,8 @@ describe('ScopeService', () => {
     const scopeA = updatedScopes.find(s => s.name === 'Scope A');
     const scopeB = updatedScopes.find(s => s.name === 'Scope B');
 
-    expect(scopeA?.rank).toBe('2'); // bumped
-    expect(scopeB?.rank).toBe('1'); // original intended rank
+    expect(scopeA?.rank).toBe('2');
+    expect(scopeB?.rank).toBe('1');
     expect(updatedScopes.length).toBe(2);
   }));
 
