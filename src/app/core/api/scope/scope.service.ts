@@ -3,7 +3,6 @@ import { delay, of, tap } from 'rxjs';
 import { Scope } from '../../../shared/models/scope.model';
 import { NotificationService } from '../../services/notification/notification.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class ScopeService {
   scopes = signal<Partial<Scope>[]>([
@@ -45,7 +44,6 @@ export class ScopeService {
       id: Date.now().toString()
     };
     
-    // Handle rank swapping if needed
     const existingScope = this.scopes().find(s => s.rank === scope.rank);
     if (existingScope) {
       const updatedScopes = this.scopes().map(s => 

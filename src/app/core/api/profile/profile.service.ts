@@ -13,8 +13,6 @@ export class ProfileService {
   notification = inject(NotificationService);
 
   constructor() {
-
-    // Initialize with default ADMIN profile
     this.profiles.set([
       {
         id: '1',
@@ -48,7 +46,7 @@ export class ProfileService {
       id: Date.now().toString(),
       createdAt: new Date(),
       updatedAt: new Date(),
-      lastModifiedBy: 'current-user' // In real app, get from auth service
+      lastModifiedBy: 'current-user'
     };
     
     this.profiles.update(profiles => [...profiles, newProfile]);
