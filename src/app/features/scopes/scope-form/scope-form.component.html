@@ -7,7 +7,7 @@
         <!-- Rank Field -->
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>{{ 'scopes.rank' | translate }}</mat-label>
-            <input matInput formControlName="rank" required (keydown)="onKeyDown($event)" (paste)="onPaste($event)">
+            <input matInput formControlName="rank" required (keydown)="onKeyDown($event)" (paste)="onPaste($event)" trimZeros>
 
             @if (scopeForm.get('rank')?.hasError('required')) {
             <mat-error>{{ 'scopes.validation.rank_required' | translate }}</mat-error>

@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Scope } from '../../../shared/models/scope.model';
 import { ScopeService } from '../../../core/api/scope/scope.service';
 import { NotificationService } from '../../../core/services/notification/notification.service';
+import { TrimZerosDirective } from '../../../shared/directives/trim-zeros/trim-zeros.directive';
 
 @Component({
   selector: 'app-scope-form',
@@ -19,7 +20,8 @@ import { NotificationService } from '../../../core/services/notification/notific
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    TranslateModule
+    TranslateModule,
+    TrimZerosDirective
   ],
   templateUrl: './scope-form.component.html',
   styleUrls: ['./scope-form.component.scss']
@@ -53,6 +55,13 @@ export class ScopeFormComponent {
       const nextRank = this.scopeService.getNextAvailableRank();
       this.scopeForm.patchValue({ rank: nextRank.toString() });
     }
+
+    // this.scopeForm.controls.rank.valueChanges.subscribe(val => {
+    //   if (val && val.startsWith('0') && val.length > 1) {
+    //     const trimmed = val.replace(/^0+/, '');
+    //     this.scopeForm.controls.rank.setValue(trimmed, { emitEvent: false });
+    //   }
+    // });
   }
 
   onPaste(event: ClipboardEvent) {
