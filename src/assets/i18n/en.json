@@ -63,7 +63,8 @@
     "validation": {
       "rank_required": "Rank is required",
       "name_required": "Name is required",
-      "description_required": "Description is required"
+      "description_required": "Description is required",
+      "rank_range": "Accepted rank from 0 to 999"
     }
   },
   "partners": {
