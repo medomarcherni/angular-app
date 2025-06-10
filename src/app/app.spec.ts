@@ -12,12 +12,9 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        // Import the standalone component and its dependencies
         AppComponent,
         HeaderComponent,
-        // Router dependencies
         RouterTestingModule,
-        // Translation module
         TranslateModule.forRoot()
       ]
     }).compileComponents();
@@ -26,7 +23,6 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     translateService = TestBed.inject(TranslateService);
     
-    // Spy on translate service methods
     spyOn(translateService, 'setDefaultLang');
     spyOn(translateService, 'use');
   });

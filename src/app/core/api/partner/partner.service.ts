@@ -20,7 +20,7 @@ export class PartnerService {
   getPartners() {
     this.loading.set(true);
     return of(this.partners()).pipe(
-      delay(100),
+      delay(300),
       tap({
         next: () => this.loading.set(false),
         error: () => {
@@ -43,7 +43,7 @@ export class PartnerService {
     };
     this.partners.update(partners => [...partners, newPartner]);
     return of(null).pipe(
-      delay(100),
+      delay(300),
       tap(() => this.loading.set(false))
     );
   }
@@ -54,7 +54,7 @@ export class PartnerService {
       partners.map(p => p.id === id ? { ...p, ...partner } : p)
     );
     return of(null).pipe(
-      delay(100),
+      delay(300),
       tap(() => this.loading.set(false))
     );
   }

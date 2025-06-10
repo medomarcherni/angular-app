@@ -1,26 +1,20 @@
 <mat-toolbar color="primary" class="header-toolbar">
     <div class="header-content">
-        <!-- Application Title/Logo -->
         <div class="app-title" routerLink="/">
         <span>{{ 'app.title' | translate }}</span>
         </div>
 
-        <!-- Navigation Links -->
         <nav class="nav-links">
-        <!-- Profile Link -->
         <a mat-button routerLink="/profiles" routerLinkActive="active-link">
             <mat-icon>person</mat-icon>
             {{ 'menu.profile' | translate }}
         </a>
 
-        <!-- Settings Dropdown -->
         <mat-menu #settingsMenu="matMenu">
-            <!-- Scopes Submenu -->
             <button mat-menu-item routerLink="/settings/scopes">
             <mat-icon>list</mat-icon>
             <span>{{ 'menu.scopes' | translate }}</span>
             </button>
-            <!-- Partners Submenu -->
             <button mat-menu-item routerLink="/settings/partners">
             <mat-icon>handshake</mat-icon>
             <span>{{ 'menu.partners' | translate }}</span>
@@ -50,7 +44,11 @@
         </button>
         </mat-menu>
 
-        <button mat-icon-button [matMenuTriggerFor]="languageMenu" class="language-switcher">
+
+        <button mat-button [matMenuTriggerFor]="languageMenu" class="language-switcher">
+            <span>
+                {{ translation.currentLang() }}
+            </span>
         <mat-icon>language</mat-icon>
         </button>
     </div>

@@ -36,15 +36,15 @@ describe('ProfileService', () => {
     service.getProfiles();
     expect(service.loading()).toBeTrue();
 
-    tick(500);
+    tick(300);
     expect(service.loading()).toBeFalse();
   }));
 
   it('should call showError on getProfiles error', fakeAsync(() => {
-    spyOn(of([]).pipe(delay(500)), 'subscribe').and.throwError('forced');
+    spyOn(of([]).pipe(delay(300)), 'subscribe').and.throwError('forced');
     service.getProfiles = function () {
       this.loading.set(true);
-      return of(null).pipe(delay(500)).subscribe({
+      return of(null).pipe(delay(300)).subscribe({
         next: () => {
           this.loading.set(false);
           this.notification.showError('profiless.load_error');
@@ -54,7 +54,7 @@ describe('ProfileService', () => {
     };
 
     service.getProfiles();
-    tick(500);
+    tick(300);
 
     expect(notificationSpy.showError).toHaveBeenCalledWith('profiless.load_error');
     expect(service.loading()).toBeFalse();

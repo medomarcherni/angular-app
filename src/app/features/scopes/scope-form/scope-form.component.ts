@@ -50,7 +50,6 @@ export class ScopeFormComponent {
     if (this.isEdit) {
       this.scopeForm.patchValue(this.data.scope);
     } else {
-      // Auto-increment rank
       const nextRank = this.scopeService.getNextAvailableRank();
       this.scopeForm.patchValue({ rank: nextRank.toString() });
     }

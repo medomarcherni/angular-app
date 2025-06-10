@@ -1,7 +1,6 @@
 
 .container {
   padding: 24px;
-  height: calc(100vh - 64px);
   overflow: auto;
 }
 
@@ -25,7 +24,6 @@
 
     .search-field {
       flex: 1;
-      // max-width: 400px;
     }
 
     .action-buttons {

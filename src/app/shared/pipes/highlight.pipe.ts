@@ -8,7 +8,6 @@ export class HighlightPipe implements PipeTransform {
   transform(value: string, searchText: string): string {
     if (!searchText || !value) return value;
 
-    // Escape special regex characters
     const escapedSearch = this.escapeRegExp(searchText);
     const regex = new RegExp(escapedSearch, 'gi');
     return value.replace(regex, match => `<span class="highlight">${match}</span>`);

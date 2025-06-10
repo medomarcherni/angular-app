@@ -61,7 +61,6 @@ describe('ProfileFormComponent', () => {
         component = fixture.componentInstance;
         translateService = TestBed.inject(TranslateService);
 
-        // Mock translation service
         spyOn(translateService, 'instant').and.callFake((key: string) => key);
         spyOn(translateService, 'get').and.returnValue(of(''));
 

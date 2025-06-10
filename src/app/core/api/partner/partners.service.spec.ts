@@ -41,7 +41,7 @@ describe('PartnerService', () => {
     service.getPartners().subscribe(p => result = p);
     expect(service.loading()).toBeTrue();
 
-    tick(100);
+    tick(300);
     expect(service.loading()).toBeFalse();
     expect(result).toEqual([]);
   }));
@@ -49,7 +49,7 @@ describe('PartnerService', () => {
   it('should handle error in getPartners', fakeAsync(() => {
     spyOn(service, 'getPartners').and.returnValue(
       of([]).pipe(
-        delay(100),
+        delay(300),
         tap({ error: () => { throw new Error('fail'); } })
       )
     );
@@ -62,14 +62,14 @@ describe('PartnerService', () => {
       }
     });
   
-    tick(100);
+    tick(300);
   }));
 
   it('should add a new partner and update loading', fakeAsync(() => {
     const newPartner = { name: 'TestPartner' };
     service.addPartner(newPartner).subscribe();
 
-    tick(100);
+    tick(300);
     const partners = service.partners();
     expect(partners.length).toBe(1);
     expect(partners[0].name).toBe('TestPartner');
@@ -82,7 +82,7 @@ describe('PartnerService', () => {
     service.partners.set([partner]);
 
     service.updatePartner('123', { name: 'NewName' }).subscribe();
-    tick(100);
+    tick(300);
 
     const updated = service.partners().find(p => p.id === '123');
     expect(updated?.name).toBe('NewName');
@@ -93,7 +93,7 @@ describe('PartnerService', () => {
     service.partners.set([{ id: '1', name: 'A' }]);
     service.updatePartner('invalid', { name: 'X' }).subscribe();
 
-    tick(100);
+    tick(300);
     expect(service.partners()[0].name).toBe('A');
   }));
 });

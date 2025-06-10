@@ -21,7 +21,6 @@
   mat-form-field {
     margin-bottom: 8px;
 
-    // Special styling for rank field
     &.rank-field {
       width: 120px;
 
@@ -43,7 +42,6 @@
   }
 }
 
-// Dialog specific styles
 mat-dialog-actions {
   padding: 16px 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
@@ -59,14 +57,12 @@ mat-dialog-actions {
   }
 }
 
-// Error message styling
 mat-error {
   font-size: 12px;
   line-height: 1.2;
   margin-top: 4px;
 }
 
-// Responsive adjustments
 @media (max-width: 480px) {
   mat-dialog-content {
     padding: 0 16px;

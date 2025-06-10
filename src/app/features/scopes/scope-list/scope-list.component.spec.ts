@@ -72,7 +72,7 @@ describe('ScopeListComponent', () => {
   it('should open edit dialog with scope and reload scopes after close', () => {
     const mockScope = { id: '456461', name: 'Test', rank: '1', description: 'scope' };
 
-    component.ngOnInit(); // Appel 1
+    component.ngOnInit();
 
     mockMatDialog.open.and.returnValue({
       afterClosed: () => of(true)
@@ -85,7 +85,7 @@ describe('ScopeListComponent', () => {
       data: { scope: mockScope }
     });
 
-    expect(mockScopeService.getScopes).toHaveBeenCalledTimes(2); // init + edit
+    expect(mockScopeService.getScopes).toHaveBeenCalledTimes(2);
   });
 
   it('should NOT reload scopes if dialog is closed with falsy value (edit)', () => {

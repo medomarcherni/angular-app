@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -59,7 +59,7 @@ export class PartnerFormComponent implements OnInit {
       this.partnerForm.get('status')?.disable();
     } else {
       // Simulate scope rank check
-      const hasRank3Scope = true; // Replace with actual logic
+      const hasRank3Scope = true;
       this.partnerForm.patchValue({ status: hasRank3Scope ? 'ACTIVE' : 'INACTIVE' });
     }
 

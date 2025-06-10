@@ -8,7 +8,6 @@ import { ProfileFormComponent } from '../profile-form/profile-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 
-// Mock ProfileService
 const mockProfiles = signal([
   { id: '1', code: 'ADMIN', description: 'Admin profile', scopes: ['Global'] }
 ]);
@@ -20,7 +19,6 @@ class MockProfileService {
   getProfiles = jasmine.createSpy('getProfiles');
 }
 
-// Mock MatDialog
 class MockMatDialog {
   open() {
     return {
@@ -63,7 +61,9 @@ describe('ProfileListComponent', () => {
   it('should call getProfiles after closing create dialog', () => {
     spyOn(dialog, 'open').and.callThrough();
     component.openCreateDialog();
-    expect(dialog.open).toHaveBeenCalledWith(ProfileFormComponent);
+    expect(dialog.open).toHaveBeenCalledWith(ProfileFormComponent, {
+      width: '600px'
+    });
     expect(profileService.getProfiles).toHaveBeenCalled();
   });
 

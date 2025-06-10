@@ -38,7 +38,7 @@ describe('ScopeService', () => {
     service.getScopes().subscribe(scopes => result = scopes);
     expect(service.loading()).toBeTrue();
 
-    tick(500);
+    tick(300);
     expect(service.loading()).toBeFalse();
     expect(result.length).toBe(1);
   }));
@@ -56,7 +56,7 @@ describe('ScopeService', () => {
     const newScope: Partial<Scope> = { name: 'Scope X', rank: '99' };
     service.addScope(newScope).subscribe();
 
-    tick(500);
+    tick(300);
 
     const scopes = service.scopes();
     expect(scopes.find(s => s.name === 'Scope X')).toBeTruthy();
@@ -71,7 +71,7 @@ describe('ScopeService', () => {
     const newScope: Partial<Scope> = { name: 'Scope B', rank: '1' };
     service.addScope(newScope).subscribe();
 
-    tick(500);
+    tick(300);
 
     const updatedScopes = service.scopes();
     const scopeA = updatedScopes.find(s => s.name === 'Scope A');
@@ -87,7 +87,7 @@ describe('ScopeService', () => {
     const updatedName = 'Updated Name';
 
     service.updateScope(id, { name: updatedName }).subscribe();
-    tick(500);
+    tick(300);
 
     const updated = service.scopes().find(s => s.id === id);
     expect(updated?.name).toBe(updatedName);
@@ -97,7 +97,7 @@ describe('ScopeService', () => {
   it('should not break if updateScope is called with invalid id', fakeAsync(() => {
     const originalScopes = [...service.scopes()];
     service.updateScope('non-existent-id', { name: 'Invalid' }).subscribe();
-    tick(500);
+    tick(300);
 
     expect(service.scopes()).toEqual(originalScopes);
   }));
@@ -105,7 +105,7 @@ describe('ScopeService', () => {
   it('should handle error in getScopes', fakeAsync(() => {
     spyOn(service, 'getScopes').and.returnValue(
       of([]).pipe(
-        delay(500),
+        delay(300),
         tap({ error: () => { throw new Error('fail'); } })
       )
     );
@@ -118,6 +118,6 @@ describe('ScopeService', () => {
       }
     });
   
-    tick(500);
+    tick(300);
   }));
 });

@@ -28,7 +28,7 @@ export class ProfileService {
 
   getProfiles() {
     this.loading.set(true);
-    return of(this.profiles()).pipe(delay(500))
+    return of(this.profiles()).pipe(delay(300))
       .subscribe({
       
         next: () => this.loading.set(false),

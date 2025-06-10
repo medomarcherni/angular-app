@@ -20,7 +20,7 @@ export class ScopeService {
   getScopes() {
     this.loading.set(true);
     return of(this.scopes()).pipe(
-      delay(500),
+      delay(300),
       tap({
         next: () => this.loading.set(false),
         error: () => {
@@ -55,7 +55,7 @@ export class ScopeService {
     }
 
     return of(null).pipe(
-      delay(500),
+      delay(300),
       tap(() => this.loading.set(false))
     );
   }
@@ -66,7 +66,7 @@ export class ScopeService {
       scopes.map(s => s.id === id ? { ...s, ...scope } : s)
     );
     return of(null).pipe(
-      delay(500),
+      delay(300),
       tap(() => this.loading.set(false))
     );
   }

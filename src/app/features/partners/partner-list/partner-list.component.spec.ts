@@ -46,7 +46,7 @@ describe('PartnerListComponent', () => {
 
   it('should load partners on init', fakeAsync(() => {
     mockPartnerService.getPartners.and.returnValue(of(mockPartners));
-    fixture.detectChanges(); // triggers ngOnInit
+    fixture.detectChanges();
     tick();
     expect(mockPartnerService.getPartners).toHaveBeenCalled();
     expect(component.partners()).toEqual(mockPartners);
@@ -58,7 +58,7 @@ describe('PartnerListComponent', () => {
     tick();
 
     component.searchControl.setValue('Beta');
-    tick(300); // simulate debounceTime
+    tick(300);
 
     const filtered = component.filteredPartners();
     expect(filtered.length).toBe(1);
@@ -77,7 +77,7 @@ describe('PartnerListComponent', () => {
     tick();
 
     expect(mockDialog.open).toHaveBeenCalled();
-    expect(mockPartnerService.getPartners).toHaveBeenCalledTimes(2); // init + reload
+    expect(mockPartnerService.getPartners).toHaveBeenCalledTimes(2);
   }));
 
   it('should open edit dialog with partner and reload after close', fakeAsync(() => {

@@ -1,4 +1,3 @@
-// profile-list.component.ts
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -40,7 +39,7 @@ export class ProfileListComponent {
   }
 
   openCreateDialog() {
-    const dialogRef = this.dialog.open(ProfileFormComponent);
+    const dialogRef = this.dialog.open(ProfileFormComponent, { width: '600px' });
     
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -51,6 +50,7 @@ export class ProfileListComponent {
 
   openEditDialog(profile: Profile) {
     const dialogRef = this.dialog.open(ProfileFormComponent, {
+      width: '600px',
       data: { profile }
     });
     
